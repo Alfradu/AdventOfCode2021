@@ -6,6 +6,7 @@ js attempts at solving advent of code 2021
 * [Day 2: Dive!](days/day2.js)
 * [Day 3: Binary Diagnostic](days/day3.js)
 * [Day 4: Giant Squid](days/day4.js)
+* [Day 5: Hydrothermal Venture](days/day5.js)
 
            _/^\_      
           <     >
