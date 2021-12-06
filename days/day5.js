@@ -11,64 +11,47 @@ function run(content, part) {
 }
 
 function addCoordinates(c1, c2, clist, part) {
-    //x check
-    var lo = 0;
-    var hi = 0;
     var index = 0;
+    var y_add = 0;
+    var x_add = 0;
+    var diff;
+    //x check
     if (c1[0] == c2[0]) {
-        if (c1[1] > c2[1]){
-            lo = c2[1];
-            hi = c1[1];
-        } else {
-            lo = c1[1];
-            hi = c2[1];
-        }
-        for (let i = lo; i <= hi; i++) {
-            index = getOccurance([c1[0], i], clist);
-            if (index != -1) clist[index][2]++;
-            else clist.push([c1[0], i, 1]);        
-        }
+        diff = Math.abs(c1[1] - c2[1]);
+        y_add = c1[1] > c2[1] ? -1 : 1;
     }
     //y check
     else if (c1[1] == c2[1]) {
-        if (c1[0] > c2[0]){
-            lo = c2[0];
-            hi = c1[0];
-        } else {
-            lo = c1[0];
-            hi = c2[0];
-        }
-        for (let i = lo; i <= hi; i++) {
-            index = getOccurance([i, c1[1]], clist);
-            if (index != -1) clist[index][2]++;
-            else clist.push([i, c1[1], 1]);        
-        }
+        diff = Math.abs(c1[0] - c2[0]);
+        x_add = c1[0] > c2[0] ? -1 : 1;
     }
     //diagonal check
-    else if (part == '2'){
+    else if (part == '2') {
+        diff = Math.abs(c1[0] - c2[0]);
         var y_add = c1[1] > c2[1] ? -1 : 1;
         var x_add = c1[0] > c2[0] ? -1 : 1;
-        var diff = Math.abs(c1[0] - c2[0]);
-        for (let i = 0; i <= diff; i++) {
-            var x = c1[0]+x_add*i;
-            var y = c1[1]+y_add*i;
-            index = getOccurance([x, y], clist);
-            if (index != -1) clist[index][2]++;
-            else clist.push([x, y, 1]);
-        }
+    } else {
+        return clist;
+    }
+    for (let i = 0; i <= diff; i++) {
+        var x = c1[0] + x_add * i;
+        var y = c1[1] + y_add * i;
+        index = getOccurance([x, y], clist);
+        if (index != -1) clist[index][2]++;
+        else clist.push([x, y, 1]);
     }
     return clist;
 }
 
-function getOccurance(coord, clist){
+function getOccurance(coord, clist) {
     var c = -1;
     for (let i = 0; i < clist.length; i++) {
-        if (clist[i][0] == coord[0] && clist[i][1] == coord[1]) c=i;
+        if (clist[i][0] == coord[0] && clist[i][1] == coord[1]) c = i;
     }
     return c;
 }
 
-function getOverlap(clist){
+function getOverlap(clist) {
     var count = 0;
     for (let i = 0; i < clist.length; i++) {
         if (clist[i][2] > 1) count++;
