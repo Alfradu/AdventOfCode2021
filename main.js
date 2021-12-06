@@ -1,15 +1,14 @@
 var u = require('./utils');
 const { performance } = require('perf_hooks');
-const dayFiles = u.getDays();
-const RunType = {
-    ALL: 1,
-    LATEST: 2,
-    DAY: 3
-  };
-var testing = false;
-var run = RunType.ALL;
 
+const RunType = {ALL: 1,LATEST: 2,DAY: 3};
+var testing = true;
+var run = RunType.LATEST;
+var runDay = 3;
+const dayFiles = u.getDays();
 for (const file of dayFiles) {
+    if (run == RunType.LATEST && file != dayFiles[dayFiles.length-1]) continue;
+    if (run == RunType.DAY && file != dayFiles[runDay-1]) continue;
     const day = require(`./days/${file}`);
     var filename = testing ? `test${file[3]}` : `input${file[3]}`;
     try {
