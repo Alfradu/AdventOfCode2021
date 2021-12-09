@@ -8,6 +8,8 @@ js attempts at solving advent of code 2021
 * [Day 4: Giant Squid](days/day4.js)
 * [Day 5: Hydrothermal Venture](days/day5.js)
 * [Day 6: Lanternfish ](days/day6.js)
+* [Day 7: The Treachery of Whales ](days/day7.js)
+* [Day 8: Seven Segment Search ](days/day8.js)
 
            _/^\_      
           <     >
