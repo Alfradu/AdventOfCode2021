@@ -10,6 +10,7 @@ js attempts at solving advent of code 2021
 * [Day 6: Lanternfish ](days/day6.js)
 * [Day 7: The Treachery of Whales ](days/day7.js)
 * [Day 8: Seven Segment Search ](days/day8.js)
+* [Day 9: Smoke Basin ](days/day9.js)
 
            _/^\_      
           <     >

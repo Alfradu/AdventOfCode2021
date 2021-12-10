@@ -1,5 +1,5 @@
 function run(content, part) {
-    var row = part == '2'? content.split(/\n/) : content.split(/\r\n/);
+    var row = content.split(/\n/);
     var digits = 0;
     var outputs = [];
     for (let i = 0; i < row.length; i++) {
