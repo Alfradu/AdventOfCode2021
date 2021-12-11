@@ -11,6 +11,7 @@ js attempts at solving advent of code 2021
 * [Day 7: The Treachery of Whales ](days/day7.js)
 * [Day 8: Seven Segment Search ](days/day8.js)
 * [Day 9: Smoke Basin ](days/day9.js)
+* [Day 10: Syntax Scoring ](days/day10.js)
 
            _/^\_      
           <     >
