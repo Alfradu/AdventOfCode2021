@@ -1,5 +1,6 @@
-function run(content, part) {
-    var row = content.split(/\n/);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var row = content.split(regex);
     var digits = 0;
     var outputs = [];
     for (let i = 0; i < row.length; i++) {

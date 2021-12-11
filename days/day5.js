@@ -1,5 +1,6 @@
-function run(content, part) {
-    var data = content.replace(/\r/g, '').split(/\n/);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var data = content.split(regex);
     var coords = [];
     for (let i = 0; i < data.length; i++) {
         var curr = data[i].split(' ');

@@ -1,4 +1,4 @@
-function run(content, part){
+function run(content, part, testing){
     var data = content.split(',').map(Number);
     var max = data.reduce( (x, y) => Math.max(x,y));
     var min = data.reduce( (x, y) => Math.min(x,y));

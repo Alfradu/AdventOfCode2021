@@ -1,5 +1,6 @@
-function run(content, part) {
-    var columns = content.split(/\n/);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var columns = content.split(regex);
     if (part == '1') var lowPoints = [];
     if (part == '2') var basins = [];
     for (let i = 0; i < columns.length; i++) {

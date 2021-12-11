@@ -45,8 +45,9 @@ class Board {
     }
 };
 
-function run(content, part) {
-    var data = content.split(/\n/);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var data = content.split(regex);
     var orders = data[0].split(',').map(Number);
     var boards = createBoards(data);
     var bingo_order;

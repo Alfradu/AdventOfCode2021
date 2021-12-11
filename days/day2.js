@@ -1,6 +1,7 @@
-function run(content, part) {
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var data = content.split(regex);
     var x = 0, y = 0, a = 0;
-    var data = content.split(/\n/);
     for (var i = 0; i < data.length; i++) {
         var dir = data[i].split(' ');
         dir[1] = parseInt(dir[1]);

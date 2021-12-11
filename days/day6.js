@@ -1,4 +1,4 @@
-function run(content, part){
+function run(content, part, testing){
     var data = content.split(',').map(Number);
     var days = addToDays(data);
     var time = part == '1' ? 80 : 256;

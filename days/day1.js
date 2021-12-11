@@ -1,5 +1,6 @@
-function run(content, part) {
-    var data = content.split(/\n/).map(Number);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var data = content.split(regex).map(Number);
     if (part == 1) return count(data);
     var sums = [];
     for (var i = 2; i < data.length; i++) {

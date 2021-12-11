@@ -1,6 +1,7 @@
 
-function run(content, part) {
-    var data = content.replaceAll(/\r/g, '').split(/\n/);
+function run(content, part, testing) {
+    var regex = testing ? /\r\n/ : /\n/;
+    var data = content.split(regex);
     if (part == '1'){
         var g = parseInt(generate(data, false, false), 2);
         var e = parseInt(generate(data, true, false), 2);
