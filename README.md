@@ -12,6 +12,7 @@ js attempts at solving advent of code 2021
 * [Day 8: Seven Segment Search ](days/day8.js)
 * [Day 9: Smoke Basin ](days/day9.js)
 * [Day 10: Syntax Scoring ](days/day10.js)
+* [Day 11: Dumbo Octopus ](days/day11.js)
 
            _/^\_      
           <     >

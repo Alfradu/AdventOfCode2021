@@ -2,8 +2,8 @@ var u = require('./utils');
 const { performance } = require('perf_hooks');
 
 const RunType = { ALL: 1, LATEST: 2, DAY: 3 };
-var testing = true;
-var run = RunType.ALL;
+var testing = false;
+var run = RunType.LATEST;
 var runDay = 3;
 const dayFiles = u.getDays();
 for (const file of dayFiles) {
