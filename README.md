@@ -13,6 +13,7 @@ js attempts at solving advent of code 2021
 * [Day 9: Smoke Basin ](days/day9.js)
 * [Day 10: Syntax Scoring ](days/day10.js)
 * [Day 11: Dumbo Octopus ](days/day11.js)
+* [Day 12: Passage Pathing ](days/day12.js)
 
            _/^\_      
           <     >

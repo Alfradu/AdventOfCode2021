@@ -4,7 +4,7 @@ const { performance } = require('perf_hooks');
 const RunType = { ALL: 1, LATEST: 2, DAY: 3 };
 var testing = false;
 var run = RunType.LATEST;
-var runDay = 3;
+var runDay = 11;
 const dayFiles = u.getDays();
 for (const file of dayFiles) {
     var number = file.substring(3).split('.')[0];
@@ -19,7 +19,7 @@ for (const file of dayFiles) {
         var endTime = performance.now();
         u.print(ans, file, '1', (endTime - startTime).toFixed(2));
     }
-    catch (error) { console.log(`Could not run ${file} part 1: ` + error) }
+    catch (error) { console.log(`Could not run ${file} part 1: ` + error + ' :: ' + error.stack) }
     try {
         var inp = u.readFile(filename);
         var startTime = performance.now();
