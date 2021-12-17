@@ -2,83 +2,59 @@ function run(content, part, testing) {
     var regex = testing ? /\r\n/ : /\n/;
     var data = content.split(regex);
     var rules = data.filter(x => x.includes('->'));
-    var polymers = { A: [], B: [], C: [], D: [], E: [], F: [], G: [], H: [], I: [], J: [], K: [], L: [], M: [], N: [], O: [], P: [], Q: [], R: [], S: [], T: [], U: [], V: [], W: [], X: [] };
-    for (let i = 0; i < data[0].length; i++) {
-        polymers[data[0][i]].push(i);
+    var polymers = {};
+    for (let i = 1; i < data[0].length; i++) {
+        polymers[data[0][i-1]+data[0][i]] = 1;
     }
     var steps = part == '1' ? 10 : 40;
     for (let i = 0; i < steps; i++) {
-        console.log("Starting step " + i);
         polymers = step(polymers, rules);
     }
-    return getBiggestPolymer(polymers)-getSmallestPolymer(polymers);
+    var elements = {};
+    for (const polymer in polymers) {
+        if (Object.hasOwnProperty.call(elements, polymer[0])) {
+            elements[polymer[0]] += polymers[polymer];
+        } else {
+            elements[polymer[0]] = polymers[polymer];
+        }
+    }
+    elements[data[0][data[0].length-1]]++;
+    return Math.max(...Object.values(elements))-Math.min(...Object.values(elements));
 }
 
 function step(polymers, rules){
-    var p = { A: [], B: [], C: [], D: [], E: [], F: [], G: [], H: [], I: [], J: [], K: [], L: [], M: [], N: [], O: [], P: [], Q: [], R: [], S: [], T: [], U: [], V: [], W: [], X: [] };
-    var max = getMax(polymers);
-    var p1 = getPolymer(0, polymers);
-    p[p1].push(0);
-    var addedPolymers = 0;
-    for (let i = 1; i < max+1; i++) {
-        var p2 = getPolymer(i, polymers);
-        var rulePolymer = findRules(p1+p2, rules);
-        if(rulePolymer != ''){
-            p[rulePolymer].push(i+addedPolymers);
-            addedPolymers++;
+    var newPolymers = {};
+    for (const polymer in polymers) {
+        var newPolymer = '';
+        for (let i = 0; i < rules.length; i++) {
+            var rule = rules[i].split(' -> ');
+            if (rule[0] == polymer){
+                newPolymer = polymer[0] + rule[1] + polymer[1];
+                break;
+            }
         }
-        p[p2].push(i+addedPolymers);
-        p1 = p2;
-    }
-    return p;
-}
-
-function findRules(str, rules){
-    var p = '';
-    for (let i = 0; i < rules.length; i++) {
-        var r = rules[i].split(' -> ');
-        if (str == r[0]) {
-            p = r[1];
-            break;
-        }
-    }
-    return p;
-}
-
-function getPolymer(number, polymers){
-    var str = '';
-    for (const p in polymers) {
-        if (polymers[p].some(x => x == number)) str = p;
-
-    }
-    return str;
-}
-
-function getMax(polymers){
-    var num = 0;
-    for (const p in polymers) {
-        for (let i = 0; i < polymers[p].length; i++) {
-            num = polymers[p][i] > num ? polymers[p][i] : num;
+        if (newPolymer != ''){
+            var pair1 = newPolymer.substring(0,2);
+            var pair2 = newPolymer.substring(1);
+            if (Object.hasOwnProperty.call(newPolymers, pair1)) {
+                newPolymers[pair1] += polymers[polymer];
+            } else {
+                newPolymers[pair1] = polymers[polymer];
+            }
+            if (Object.hasOwnProperty.call(newPolymers, pair2)) {
+                newPolymers[pair2] += polymers[polymer];
+            } else {
+                newPolymers[pair2] = polymers[polymer];
+            }
+            polymers[polymer] = 0;
         }
     }
-    return num;
+    for (const p in newPolymers) {
+        if (newPolymers[p] == 0) delete newPolymers[p];
+    }
+    return newPolymers;
 }
 
-function getBiggestPolymer(polymers){
-    var size = 0;
-    for (const p in polymers) {
-        if (polymers[p].length > size) size = polymers[p].length;
-    }
-    return size;
-}
-
-function getSmallestPolymer(polymers){
-    var size = Number.MAX_SAFE_INTEGER;
-    for (const p in polymers) {
-        if (polymers[p].length < size && polymers[p].length != 0) size = polymers[p].length;
-    }
-    return size;
-}
 module.exports = {
     run
 }

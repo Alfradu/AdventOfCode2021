@@ -15,6 +15,7 @@ js attempts at solving advent of code 2021
 * [Day 11: Dumbo Octopus ](days/day11.js)
 * [Day 12: Passage Pathing ](days/day12.js)
 * [Day 13: Transparent Origami ](days/day13.js)
+* [Day 14: Extended Polymerization ](days/day14.js)
 
            _/^\_      
           <     >
